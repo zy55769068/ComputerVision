@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ComputerVision.MainPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             iOS:Page.UseSafeArea="true">
+    <StackLayout>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" />
+        <Button Command="{Binding TakePhoto}"
+                Text="Take Photo" />
+        <Button Command="{Binding PickPhoto}"
+                Text="Pick Photo" />
+        <Image WidthRequest="200"
+               HeightRequest="200"
+               Aspect="AspectFit"
+               Source="{Binding ImageSource}" />
+        <TableView HasUnevenRows="true"
+                   Intent="Form">
+            <TableRoot>
+                <TableSection>
+                    <TextCell Detail="{Binding ResultModel.RequestId}"
+                              Text="RequestId" />
+                </TableSection>
+                <TableSection Title="Metadata">
+                    <TextCell Detail="{Binding ResultModel.Metadata.Format}"
+                              Text="Format" />
+                    <TextCell Detail="{Binding ResultModel.Metadata.Width}"
+                              Text="Width" />
+                    <TextCell Detail="{Binding ResultModel.Metadata.Height}"
+                              Text="Height" />
+                </TableSection>
+                <TableSection Title="ImageType">
+                    <TextCell Detail="{Binding ResultModel.ImageType.ClipArtType}"
+                              Text="ClipArtType" />
+                    <TextCell Detail="{Binding ResultModel.ImageType.LineDrawingType}"
+                              Text="LineDrawingType" />
+                </TableSection>
+                <TableSection Title="Adult">
+                    <TextCell Detail="{Binding ResultModel.Adult.IsAdultContent}"
+                              Text="IsAdultContent" />
+                    <TextCell Detail="{Binding ResultModel.Adult.AdultScore}"
+                              Text="AdultScore" />
+                    <TextCell Detail="{Binding ResultModel.Adult.IsRacyContent}"
+                              Text="ClipArtType" />
+                    <TextCell Detail="{Binding ResultModel.Adult.RacyScore}"
+                              Text="RacyScore" />
+                </TableSection>
+
+            </TableRoot>
+        </TableView>
+    </StackLayout>
+</ContentPage>
